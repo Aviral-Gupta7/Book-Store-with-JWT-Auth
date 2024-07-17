@@ -1,3 +1,5 @@
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-export { Header, Footer };
+import Spinner from "./Spinner/Spinner";
+import Logo from "./Logo/Logo";
+export { Header, Footer, Spinner, Logo };
