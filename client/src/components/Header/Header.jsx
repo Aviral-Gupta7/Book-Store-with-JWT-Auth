@@ -30,7 +30,7 @@ function Header() {
         {/* End */}
         <div className={`w-1/3 lg:w-auto flex justify-end`}>
           {currentUser ? (
-            <UserMenu />
+            <UserMenu className="hidden lg:flex mx-4" />
           ) : (
             <>
               <Button
@@ -38,16 +38,16 @@ function Header() {
                 to="/signup"
                 className="hidden lg:flex mx-4"
               />
-              <div className="flex lg:hidden">
-                <Hamburger
-                  toggled={isOpen}
-                  toggle={() => {
-                    setOpen(!isOpen);
-                  }}
-                />
-              </div>
             </>
           )}
+          <div className="flex lg:hidden">
+            <Hamburger
+              toggled={isOpen}
+              toggle={() => {
+                setOpen(!isOpen);
+              }}
+            />
+          </div>
         </div>
       </div>
       <HamMenu isOpen={isOpen} />

@@ -9,8 +9,10 @@ import {
   Contact,
   Dashboard,
 } from "./views";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <BrowserRouter>
       <Header />
@@ -21,7 +23,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/store" element={<Store />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        {<Route path="/dashboard" element={<Dashboard />} />}
       </Routes>
       <Footer />
     </BrowserRouter>

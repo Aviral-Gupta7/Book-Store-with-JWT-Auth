@@ -2,12 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-function UserMenu() {
+function UserMenu({ className }) {
   const { profilePhoto } = useSelector((state) => state.user.currentUser);
   return (
     <>
       <NavLink
-        className={`w-[50px] h-[50px] mr-4 border-black border-2 rounded-full overflow-hidden`}
+        className={`w-[50px] h-[50px] mr-4 border-black border-2 rounded-full overflow-hidden ${className}`}
         to="/dashboard"
       >
         <img
