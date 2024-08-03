@@ -1,6 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Header, Footer } from "./components";
-import { Home, Signin, Signup, About, Store, Contact } from "./views";
+import {
+  Home,
+  Signin,
+  Signup,
+  About,
+  Store,
+  Contact,
+  Dashboard,
+} from "./views";
 
 function App() {
   return (
@@ -13,6 +21,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/store" element={<Store />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />
     </BrowserRouter>

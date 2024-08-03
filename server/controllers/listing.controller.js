@@ -88,3 +88,9 @@ export const updateListing = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getListing = async (req, res, next) => {
+  Listing.find()
+    .then((Listing) => res.json(Listing))
+    .catch((err) => next(err));
+};

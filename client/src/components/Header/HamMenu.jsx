@@ -1,6 +1,5 @@
 import Navlinks from "./Navlinks";
 import Button from "./Button";
-import Searchbar from "./Searchbar";
 import { useSelector } from "react-redux";
 
 function HamMenu({ isOpen }) {
@@ -11,9 +10,6 @@ function HamMenu({ isOpen }) {
         isOpen ? "flex lg:hidden" : "hidden"
       } flex-col  items-center gap-4 border-gray-400 border-b-2 pb-4`}
     >
-      <div className="flex sm:hidden items-center">
-        <Searchbar className="!w-[200px]" />
-      </div>
       <Navlinks className="flex-col items-center text-xl font-['Oswald'] font-normal gap-4" />
       {currentuser ? (
         <>Logged In</>

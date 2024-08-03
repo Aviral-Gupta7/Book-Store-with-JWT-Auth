@@ -71,9 +71,9 @@ function Signin() {
               <p className="text-xl font-bold mb-4">Don't have an Account?</p>
               <Link
                 to="/signup"
-                className={`text-lg font-semibold ${LinkHoverEffect}`}
+                className={`text-lg text-white font-semibold border-2 border-transparent px-4 py-2 rounded-lg inline-block bg-blue-700 hover:tracking-wider transition-all duration-300 ease-in-out`}
               >
-                Sign Up
+                Sign Up Toady
               </Link>
             </div>
           </div>
@@ -87,9 +87,12 @@ function Signin() {
             )}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <form onSubmit={handleSubmit} className="space-y-6">
-                <h3 className="text-2xl font-bold mb-4">Log In</h3>
+                <h3 className="text-2xl font-bold my-4 ">Log In</h3>
                 <div>
-                  <label htmlFor="email" className="text-sm font-medium block mb-1">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium block mb-1"
+                  >
                     Email
                   </label>
                   <input
@@ -102,7 +105,10 @@ function Signin() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="password" className="text-sm font-medium block mb-1">
+                  <label
+                    htmlFor="password"
+                    className="text-sm font-medium block mb-1"
+                  >
                     Password
                   </label>
                   <input

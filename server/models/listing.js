@@ -4,7 +4,7 @@ const listingSchema = new mongoose.Schema(
   {
     booktitle: {
       type: String,
-      required: true,
+      required: true, 
       maxLength: 100,
     },
     bookdescription: String,

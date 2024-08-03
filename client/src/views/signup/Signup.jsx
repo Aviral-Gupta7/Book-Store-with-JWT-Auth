@@ -23,6 +23,13 @@ function Signup() {
     if (!formData.username || !formData.email || !formData.password) {
       return setErrorMessages("Please fill out all fields.");
     }
+    if (formData.password.length < 5) {
+      return next(errorHandler(400, "Password should be atleast 5 characters"));
+    }
+
+    if (formData.username.length < 3) {
+      return next(errorHandler(400, "Username should be atleast 3 characters"));
+    }
     try {
       setLoading(true);
       setErrorMessages(null);
@@ -69,9 +76,9 @@ function Signup() {
               <p className="text-xl font-bold mb-4">Already have an Account?</p>
               <Link
                 to="/signin"
-                className={`text-lg font-semibold ${LinkHoverEffect}`}
+                className={`text-lg text-white font-semibold border-2 border-transparent px-4 py-2 rounded-lg inline-block bg-blue-700 hover:tracking-wider transition-all duration-300 ease-in-out`}
               >
-                Log In
+                Log In Instead
               </Link>
             </div>
           </div>
@@ -87,7 +94,10 @@ function Signup() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <h3 className="text-2xl font-bold mb-4">Create An Account</h3>
                 <div>
-                  <label htmlFor="username" className="text-sm font-medium block mb-1">
+                  <label
+                    htmlFor="username"
+                    className="text-sm font-medium block mb-1"
+                  >
                     Username
                   </label>
                   <input
@@ -100,7 +110,10 @@ function Signup() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="text-sm font-medium block mb-1">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium block mb-1"
+                  >
                     Email
                   </label>
                   <input
@@ -113,7 +126,10 @@ function Signup() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="password" className="text-sm font-medium block mb-1">
+                  <label
+                    htmlFor="password"
+                    className="text-sm font-medium block mb-1"
+                  >
                     Password
                   </label>
                   <input

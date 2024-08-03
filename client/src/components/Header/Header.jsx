@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Logo from "../Logo/Logo";
 import Navlinks from "./Navlinks";
-import Searchbar from "./Searchbar";
 import Button from "./Button";
 import Hamburger from "hamburger-react";
 import HamMenu from "./HamMenu";
+import UserMenu from "./UserMenu";
 import { useSelector } from "react-redux";
 
 function Header() {
@@ -26,14 +26,11 @@ function Header() {
           <div className="hidden lg:flex">
             <Navlinks className="gap-8 items-center text-xl font-['Oswald'] font-normal" />
           </div>
-          <div className="flex items-center">
-            <Searchbar />
-          </div>
         </div>
         {/* End */}
-        <div className="w-1/3 lg:w-auto flex justify-end">
+        <div className={`w-1/3 lg:w-auto flex justify-end`}>
           {currentUser ? (
-            "Logged in"
+            <UserMenu />
           ) : (
             <>
               <Button

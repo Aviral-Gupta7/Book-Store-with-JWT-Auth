@@ -24,6 +24,14 @@ export const signup = async (req, res, next) => {
     return next(errorHandler(400, "Please provide all the fields"));
   }
 
+  if (password.length < 5) {
+    return next(errorHandler(400, "Password should be atleast 5 characters"));
+  }
+
+  if (username.length < 3) {
+    return next(errorHandler(400, "Username should be atleast 3 characters"));
+  }
+
   //Hashing the password
   const hashedPassword = bcryptjs.hashSync(password, 10);
   //Creating The User
@@ -63,6 +71,7 @@ export const signin = async (req, res, next) => {
       _id: validUser._id,
       username: validUser.username,
       email: validUser.email,
+      profilePhoto: validUser.profilePhoto,
       createdDate: validUser.createdDate,
       updatedDate: validUser.updatedDate,
       token,

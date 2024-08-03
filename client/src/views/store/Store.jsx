@@ -1,81 +1,27 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const StorePage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [books, setBooks] = useState([]);
 
-  const books = [
-    {
-      id: 1,
-      title: "The Power of Your Subconscious Mind",
-      author: "Joseph Murphy",
-      price: 275,
-      image: "https://m.media-amazon.com/images/I/71sBtM3Yi5L._SY466_.jpg",
-      category: "Self-help"
-    },
-    {
-      id: 2,
-      title: "Varchasva",
-      author: "Aditya Tiwari",
-      price: 325,
-      image: "https://m.media-amazon.com/images/I/51sMJkf2YaL._SY445_SX342_.jpg",
-      category: "Fiction"
-    },
-    {
-      id: 3,
-      title: "THE SILENT PATIENT",
-      author: "Alex Michaelides",
-      price: 247,
-      image: "https://m.media-amazon.com/images/I/5177eLEs+YL._SY445_SX342_.jpg",
-      category: "Thriller"
-    },
-    {
-      id: 4,
-      title: "Courage To Be Disliked",
-      author: "Ichiro Kishimi",
-      price: 322,
-      image: "https://m.media-amazon.com/images/I/41h1AktRBmL._SY445_SX342_.jpg",
-      category: "Self-help"
-    },
-    {
-      id: 5,
-      title: "Atomic Habits",
-      author: "James Clear",
-      price: 420,
-      image: "https://m.media-amazon.com/images/I/81YkqyaFVEL._SY342_.jpg",
-      category: "Self-help"
-    },
-    {
-      id: 6,
-      title: "Think and Grow Rich",
-      author: "Napoleon Hill",
-      price: 199,
-      image: "https://m.media-amazon.com/images/I/71QKQ9mwV7L._SY445_.jpg",
-      category: "Self-help"
-    },
-    {
-      id: 7,
-      title: "The Alchemist",
-      author: "Paulo Coelho",
-      price: 350,
-      image: "https://m.media-amazon.com/images/I/71UwSHSZRnS._SY445_.jpg",
-      category: "Fiction"
-    },
-    {
-      id: 8,
-      title: "Harry Potter and the Philosopher's Stone",
-      author: "J.K. Rowling",
-      price: 400,
-      image: "https://m.media-amazon.com/images/I/81YOuOGFCJL._SY445_.jpg",
-      category: "Fantasy"
-    },
-    // Add more books as needed
-  ];
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch("/api/listing/get", {
+        method: "GET",
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setBooks(data);
+      }
+    }
+    fetchData();
+  }, []);
 
-  const filteredBooks = books.filter(book =>
-    book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    book.category.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredBooks = books.filter(
+    (book) =>
+      book.booktitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.authorname.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleAddToCart = (book) => {
@@ -88,7 +34,7 @@ const StorePage = () => {
       <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center font-['Poppins'] mb-6">
         Our Bookstore
       </h1>
-      
+
       <div className="mb-6">
         <input
           type="text"
@@ -100,14 +46,20 @@ const StorePage = () => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {filteredBooks.map(book => (
-          <div key={book.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col">
-            <img src={book.image} alt={book.title} className="w-full h-48 sm:h-56 object-cover" />
+        {filteredBooks.map((book) => (
+          <div
+            key={book._id}
+            className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col"
+          >
+            <img
+              src={book.bookdisplayphoto}
+              alt={book.booktitle}
+              className="w-full h-48 sm:h-56 object-cover"
+            />
             <div className="p-4 flex-grow flex flex-col justify-between">
               <div>
-                <h2 className="text-lg font-semibold mb-2">{book.title}</h2>
-                <p className="text-gray-600 mb-1">By {book.author}</p>
-                <p className="text-gray-600 mb-2">Category: {book.category}</p>
+                <h2 className="text-lg font-semibold mb-2">{book.booktitle}</h2>
+                <p className="text-gray-600 mb-1">By {book.authorname}</p>
               </div>
               <div>
                 <p className="text-xl font-bold mb-3">&#x20b9;{book.price}</p>
@@ -124,11 +76,15 @@ const StorePage = () => {
       </div>
 
       {filteredBooks.length === 0 && (
-        <p className="text-center text-lg mt-8">No books found. Try a different search term.</p>
+        <p className="text-center text-lg mt-8">
+          No books found. Try a different search term.
+        </p>
       )}
 
       <div className="mt-8 text-center">
-        <Link to="/" className="text-blue-500 hover:underline">Back to Home</Link>
+        <Link to="/" className="text-blue-500 hover:underline">
+          Back to Home
+        </Link>
       </div>
     </div>
   );
